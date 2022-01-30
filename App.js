@@ -1,13 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { NativeRouter, Route, Routes } from "react-router-native";
+
 import LayOut from "./components/LayOut";
 import DashBoard from "./views/DashBoard";
+import Login from "./views/Login";
+import Profile from "./views/Settings";
 
 export default function App() {
     return (
-        <LayOut>
-            <DashBoard />
-        </LayOut>
+        <NativeRouter>
+            <LayOut>
+                <Routes>
+                    <Route path="/" element={<DashBoard />} />
+                    <Route path="/settings" element={<Profile />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+            </LayOut>
+        </NativeRouter>
     );
 }
 

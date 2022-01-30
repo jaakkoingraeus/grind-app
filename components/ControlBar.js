@@ -7,30 +7,37 @@ import {
     faClock,
     faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-native";
 
 const ControlBar = () => {
     return (
         <View style={styles.container}>
             <Pressable>
-                <FontAwesomeIcon
-                    icon={faSignOutAlt}
-                    style={styles.icon}
-                    size={theme.iconSizes.md}
-                />
+                <Link to="/login">
+                    <FontAwesomeIcon
+                        icon={faSignOutAlt}
+                        style={styles.icon}
+                        size={theme.iconSizes.md}
+                    />
+                </Link>
             </Pressable>
             <Pressable>
-                <FontAwesomeIcon
-                    icon={faClock}
-                    style={styles.icon}
-                    size={theme.iconSizes.md}
-                />
+                <Link to="/">
+                    <FontAwesomeIcon
+                        icon={faClock}
+                        style={styles.icon}
+                        size={theme.iconSizes.md}
+                    />
+                </Link>
             </Pressable>
             <Pressable>
-                <FontAwesomeIcon
-                    icon={faUserCog}
-                    style={styles.icon}
-                    size={theme.iconSizes.md}
-                />
+                <Link to="/settings">
+                    <FontAwesomeIcon
+                        icon={faUserCog}
+                        style={styles.icon}
+                        size={theme.iconSizes.md}
+                    />
+                </Link>
             </Pressable>
         </View>
     );
@@ -42,13 +49,15 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: theme.colors.bgSecondary,
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "flex-start",
         flexDirection: "row",
+        paddingBottom: theme.margin.md,
     },
     icon: {
         color: theme.colors.secondary,
         marginHorizontal: theme.margin.lg,
-        marginVertical: theme.margin.md,
+        marginTop: theme.margin.md,
+        marginBottom: theme.margin.lg,
     },
 });
