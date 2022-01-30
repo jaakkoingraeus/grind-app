@@ -1,3 +1,5 @@
+import Constants from "expo-constants";
+
 export const theme = {
     colors: {
         bgPrimary: "#FFF",
@@ -13,5 +15,14 @@ export const theme = {
     margin: {
         sm: 8,
         md: 16,
+        lg: 24,
+    },
+    constants: {
+        statusBarHeight: Constants.statusBarHeight,
+        bottomBarHeight: 82,
+    },
+    iconSizes: {
+        md: 24,
+        lg: 36,
     },
 };

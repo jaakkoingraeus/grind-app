@@ -25,7 +25,7 @@ export default TopBar;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: theme.colors.bgSecondary,
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: theme.constants.statusBarHeight,
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
