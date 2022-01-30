@@ -4,18 +4,28 @@ import Constants from "expo-constants";
 import { theme } from "./theme";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-native";
 
 const TopBar = () => {
+    const location = useLocation();
     return (
         <View style={styles.container}>
             <Text style={styles.logo}>GRIND</Text>
-            <Pressable
-                onPress={() => Alert.alert("You tried to change the company")}
-                style={styles.companySelector}
-            >
-                <Text style={styles.companyText}>Nacu Oy</Text>
-                <FontAwesomeIcon style={styles.sortDown} icon={faSortDown} />
-            </Pressable>
+
+            {location.pathname === "/" && (
+                <Pressable
+                    onPress={() =>
+                        Alert.alert("You tried to change the company")
+                    }
+                    style={styles.companySelector}
+                >
+                    <Text style={styles.companyText}>Nacu Oy</Text>
+                    <FontAwesomeIcon
+                        style={styles.sortDown}
+                        icon={faSortDown}
+                    />
+                </Pressable>
+            )}
         </View>
     );
 };

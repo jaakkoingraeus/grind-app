@@ -9,6 +9,7 @@ export const theme = {
         accent: "#2563eb",
         textPrimary: "#1f2937",
         textSecondary: "#4b5563",
+        textLight: "#d1d5db",
         light: "#f9fafb",
     },
     fontSizes: {
@@ -26,6 +27,7 @@ export const theme = {
         md: 16,
         lg: 24,
         xl: 48,
+        xxxl: 72,
     },
     padding: {
         buttonHorizontal: 36,
