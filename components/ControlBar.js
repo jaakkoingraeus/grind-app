@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "./theme";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -11,21 +11,27 @@ import {
 const ControlBar = () => {
     return (
         <View style={styles.container}>
-            <FontAwesomeIcon
-                icon={faSignOutAlt}
-                style={styles.icon}
-                size={theme.iconSizes.md}
-            />
-            <FontAwesomeIcon
-                icon={faClock}
-                style={styles.icon}
-                size={theme.iconSizes.md}
-            />
-            <FontAwesomeIcon
-                icon={faUserCog}
-                style={styles.icon}
-                size={theme.iconSizes.md}
-            />
+            <Pressable>
+                <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    style={styles.icon}
+                    size={theme.iconSizes.md}
+                />
+            </Pressable>
+            <Pressable>
+                <FontAwesomeIcon
+                    icon={faClock}
+                    style={styles.icon}
+                    size={theme.iconSizes.md}
+                />
+            </Pressable>
+            <Pressable>
+                <FontAwesomeIcon
+                    icon={faUserCog}
+                    style={styles.icon}
+                    size={theme.iconSizes.md}
+                />
+            </Pressable>
         </View>
     );
 };
@@ -35,8 +41,6 @@ export default ControlBar;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: theme.colors.bgSecondary,
-        height: theme.constants.bottomBarHeight,
-        paddingBottom: theme.margin.md,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "flex-start",
@@ -44,6 +48,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         color: theme.colors.secondary,
-        margin: theme.margin.lg,
+        marginHorizontal: theme.margin.lg,
+        marginVertical: theme.margin.md,
     },
 });
