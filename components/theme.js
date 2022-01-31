@@ -23,6 +23,7 @@ export const theme = {
         bold: "700",
     },
     margin: {
+        xs: 4,
         sm: 8,
         md: 16,
         lg: 24,
@@ -31,7 +32,9 @@ export const theme = {
     },
     padding: {
         buttonHorizontal: 36,
-        buttonVertical: 24,
+        buttonVertical: 18,
+        inputHorizontal: 12,
+        inputVertical: 16,
     },
     borderRadius: {
         sm: 5,

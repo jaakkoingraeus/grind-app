@@ -1,20 +1,23 @@
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../components/theme";
+import StatView from "../components/StatView";
 
 const Settings = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Settings</Text>
             <View style={styles.settings}>
-                <View style={styles.settingRow}>
-                    <Text style={styles.label}>Name: </Text>
-                    <Text style={styles.value}>Jaakko Ingraeus</Text>
-                </View>
-                <View style={styles.settingRow}>
-                    <Text style={styles.label}>Email: </Text>
-                    <Text style={styles.value}>jaakko@nacu.fi</Text>
-                </View>
+                <StatView
+                    label="Name: "
+                    value="Jaakko Ingraeus"
+                    style={{ marginBottom: theme.margin.sm }}
+                />
+                <StatView
+                    label="Email: "
+                    value="jaakko@nacu.fi"
+                    style={{ marginBottom: theme.margin.sm }}
+                />
                 <Pressable
                     onPress={() => Alert.alert("You tried to change password")}
                 >
@@ -48,19 +51,5 @@ const styles = StyleSheet.create({
         marginVertical: theme.margin.md,
         marginHorizontal: theme.margin.lg,
         marginTop: theme.margin.lg,
-    },
-    settingRow: {
-        marginBottom: theme.margin.sm,
-        flexDirection: "row",
-    },
-    label: {
-        fontSize: theme.fontSizes.md,
-        color: theme.colors.textSecondary,
-        fontWeight: theme.fontWeight.semibold,
-    },
-    value: {
-        fontSize: theme.fontSizes.md,
-        color: theme.colors.textPrimary,
-        fontWeight: theme.fontWeight.semibold,
     },
 });

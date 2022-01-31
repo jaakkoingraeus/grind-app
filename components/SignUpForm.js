@@ -1,14 +1,60 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
+import React, { useState } from "react";
 import { theme } from "./theme";
+import SubmitButton from "./SubmitButton";
 
 const SignUpForm = ({ setStatus }) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Sign up</Text>
             <View style={styles.form}>
-                <Pressable onPress={() => setStatus("login")}>
-                    <Text>Already a user? Log in</Text>
+                <View>
+                    <Text style={styles.inputLabel}>Username</Text>
+                    <View style={styles.inputField}>
+                        <TextInput
+                            style={styles.textInput}
+                            value={username}
+                            placeholder="Enter username"
+                            onChangeText={(username) => setUsername(username)}
+                        />
+                    </View>
+                </View>
+                <View>
+                    <Text style={styles.inputLabel}>Email</Text>
+                    <View style={styles.inputField}>
+                        <TextInput
+                            style={styles.textInput}
+                            value={email}
+                            placeholder="Enter email"
+                            onChangeText={(email) => setEmail(email)}
+                        />
+                    </View>
+                    <View>
+                        <Text style={styles.inputLabel}>Password</Text>
+                        <View style={styles.inputField}>
+                            <TextInput
+                                style={styles.textInput}
+                                value={password}
+                                secureTextEntry={true}
+                                placeholder="Enter password"
+                                onChangeText={(password) =>
+                                    setPassword(password)
+                                }
+                            />
+                        </View>
+                    </View>
+                </View>
+                <SubmitButton>Sign up</SubmitButton>
+                <Pressable
+                    style={styles.changeStatus}
+                    onPress={() => setStatus("login")}
+                >
+                    <Text style={styles.changeStatusText}>
+                        Already a user? Log in
+                    </Text>
                 </Pressable>
             </View>
         </View>
@@ -29,7 +75,27 @@ const styles = StyleSheet.create({
         marginTop: theme.margin.lg,
     },
     form: {
-        marginHorizontal: theme.margin.lg,
-        marginTop: theme.margin.xl,
+        marginHorizontal: theme.margin.md,
+        marginTop: theme.margin.lg,
+    },
+    inputLabel: {
+        fontWeight: theme.fontWeight.semibold,
+        color: theme.colors.textSecondary,
+        marginBottom: theme.margin.sm,
+    },
+    inputField: {
+        backgroundColor: theme.colors.bgSecondary,
+        borderRadius: theme.borderRadius.sm,
+        marginBottom: theme.margin.lg,
+    },
+    textInput: {
+        paddingHorizontal: theme.padding.inputHorizontal,
+        paddingVertical: theme.padding.inputVertical,
+    },
+    changeStatus: {
+        marginTop: theme.margin.md,
+    },
+    changeStatusText: {
+        textDecorationLine: "underline",
     },
 });
