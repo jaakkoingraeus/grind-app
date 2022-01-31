@@ -2,56 +2,23 @@ import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { theme } from "./theme";
 
-const Timer = () => {
-    const [timer, setTimer] = useState(0);
-    const [timerStatus, setTimerStatus] = useState(false);
-
-    useEffect(() => {
-        let interval = null;
-        if (timerStatus)
-            interval = setInterval(() => setTimer((timer) => timer + 1), 1000);
-        else {
-            clearInterval(interval);
-        }
-        return () => {
-            clearInterval(interval);
-        };
-    }, [timerStatus]);
-    const cancelTimer = () => {
-        Alert.alert(
-            "Stop timer",
-            "Are you sure you want to stop your work timer?",
-            [
-                {
-                    text: "Stop",
-                    onPress: () => {
-                        setTimerStatus(false);
-                        setTimer(0);
-                    },
-                },
-                {
-                    text: "Cancel",
-                },
-            ]
-        );
-    };
-
+const Timer = ({ props }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.time}>{timer}</Text>
+            <Text style={styles.time}>{props.timer}</Text>
             <Pressable
                 style={styles.startButton}
-                onPress={() => setTimerStatus(!timerStatus)}
+                onPress={() => props.setTimerStatus(!props.timerStatus)}
             >
                 <Text style={styles.grindText}>
-                    {timerStatus ? "PAUSE" : "GRIND"}
+                    {props.timerStatus ? "PAUSE" : "GRIND"}
                 </Text>
             </Pressable>
             <Pressable style={styles.addHours}>
                 <Text
                     style={styles.addHours}
                     onPress={() => {
-                        cancelTimer();
+                        props.cancelTimer();
                     }}
                 >
                     Cancel timer

@@ -4,11 +4,11 @@ import { theme } from "../components/theme";
 import UserStats from "../components/UserStats";
 import Timer from "../components/Timer";
 
-const DashBoard = () => {
+const DashBoard = (props) => {
     return (
         <View style={styles.container}>
             <UserStats />
-            <Timer />
+            <Timer props={props} />
         </View>
     );
 };
