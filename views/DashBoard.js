@@ -8,7 +8,14 @@ const DashBoard = (props) => {
     return (
         <View style={styles.container}>
             <UserStats />
-            <Timer props={props} />
+            <Timer
+                hours={props.hours}
+                minutes={props.minutes}
+                seconds={props.seconds}
+                timerStatus={props.timerStatus}
+                setTimerStatus={props.setTimerStatus}
+                cancelTimer={props.cancelTimer}
+            />
         </View>
     );
 };

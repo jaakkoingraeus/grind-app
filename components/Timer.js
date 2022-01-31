@@ -1,24 +1,32 @@
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { theme } from "./theme";
+import Time from "./Time";
 
-const Timer = ({ props }) => {
+const Timer = ({
+    hours,
+    minutes,
+    seconds,
+    timerStatus,
+    setTimerStatus,
+    cancelTimer,
+}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.time}>{props.timer}</Text>
+            <Time hours={hours} minutes={minutes} seconds={seconds} />
             <Pressable
                 style={styles.startButton}
-                onPress={() => props.setTimerStatus(!props.timerStatus)}
+                onPress={() => setTimerStatus(!timerStatus)}
             >
                 <Text style={styles.grindText}>
-                    {props.timerStatus ? "PAUSE" : "GRIND"}
+                    {timerStatus ? "PAUSE" : "GRIND"}
                 </Text>
             </Pressable>
             <Pressable style={styles.addHours}>
                 <Text
                     style={styles.addHours}
                     onPress={() => {
-                        props.cancelTimer();
+                        cancelTimer();
                     }}
                 >
                     Cancel timer
@@ -35,14 +43,6 @@ const styles = StyleSheet.create({
         flex: 1,
         display: "flex",
         justifyContent: "center",
-    },
-    time: {
-        fontSize: 96,
-        textAlign: "center",
-        fontWeight: theme.fontWeight.semibold,
-        color: theme.colors.textPrimary,
-        transform: [{ scaleY: 1.1 }],
-        marginBottom: theme.margin.xl,
     },
     startButton: {
         backgroundColor: theme.colors.accent,

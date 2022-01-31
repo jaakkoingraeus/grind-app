@@ -15,7 +15,7 @@ export default function App() {
     useEffect(() => {
         let interval = null;
         if (timerStatus)
-            interval = setInterval(() => setTimer((timer) => timer + 1), 1000);
+            interval = setInterval(() => setTimer((timer) => timer + 1), 500);
         else {
             clearInterval(interval);
         }
@@ -50,11 +50,12 @@ export default function App() {
                         path="/"
                         element={
                             <DashBoard
-                                timer={timer}
-                                setTime={setTimer}
                                 cancelTimer={cancelTimer}
                                 timerStatus={timerStatus}
                                 setTimerStatus={setTimerStatus}
+                                hours={6}
+                                minutes={12}
+                                seconds={34}
                             />
                         }
                     />
