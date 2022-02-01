@@ -14,23 +14,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
     const timer = useTimer();
 
-    const cancelTimer = () => {
-        Alert.alert(
-            "Stop timer",
-            "Are you sure you want to stop your work timer?",
-            [
-                {
-                    text: "Stop",
-                    onPress: () => {
-                        console.log("Stopped");
-                    },
-                },
-                {
-                    text: "Cancel",
-                },
-            ]
-        );
-    };
     return (
         <TimerContext.Provider value={timer}>
             <NavigationContainer>

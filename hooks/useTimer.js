@@ -14,6 +14,11 @@ const useTimer = () => {
         setRunning(!running);
     };
 
+    const resetTimer = () => {
+        setRunning(false);
+        setCurrentTime(0);
+    };
+
     useEffect(() => {
         if (running) {
             setIntervalState(
@@ -31,6 +36,7 @@ const useTimer = () => {
         time: currentTime,
         status: running,
         toggle: toggleTimer,
+        reset: resetTimer,
     };
 };
 

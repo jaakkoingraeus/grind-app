@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, Alert } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { theme } from "./theme";
 import Time from "./Time";
@@ -6,6 +6,24 @@ import { TimerContext } from "../contexts/timer";
 
 const Timer = ({}) => {
     const timer = useContext(TimerContext);
+
+    const cancelTimer = () => {
+        Alert.alert(
+            "Stop timer",
+            "Are you sure you want to stop your work timer?",
+            [
+                {
+                    text: "Stop",
+                    onPress: () => {
+                        timer.reset();
+                    },
+                },
+                {
+                    text: "Cancel",
+                },
+            ]
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -22,7 +40,7 @@ const Timer = ({}) => {
                 <Text
                     style={styles.addHours}
                     onPress={() => {
-                        console.log("Pause");
+                        cancelTimer();
                     }}
                 >
                     Cancel timer
