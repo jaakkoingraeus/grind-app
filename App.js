@@ -1,12 +1,13 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { Alert, StyleSheet } from "react-native";
-import { NativeRouter, Route, Routes } from "react-router-native";
+import Companies from "./screens/Companies";
+import DashBoard from "./screens/DashBoard";
+import Login from "./screens/Login";
+import Profile from "./screens/Settings";
 
-import LayOut from "./components/LayOut";
-import Companies from "./views/Companies";
-import DashBoard from "./views/DashBoard";
-import Login from "./views/Login";
-import Profile from "./views/Settings";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
     const [timer, setTimer] = useState(0);
@@ -43,28 +44,14 @@ export default function App() {
         );
     };
     return (
-        <NativeRouter>
-            <LayOut>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <DashBoard
-                                cancelTimer={cancelTimer}
-                                timerStatus={timerStatus}
-                                setTimerStatus={setTimerStatus}
-                                hours={6}
-                                minutes={12}
-                                seconds={34}
-                            />
-                        }
-                    />
-                    <Route path="/settings" element={<Profile />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/companies" element={<Companies />} />
-                </Routes>
-            </LayOut>
-        </NativeRouter>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="dashboard" component={DashBoard} />
+                <Stack.Screen name="settings" component={Profile} />
+                <Stack.Screen name="login" component={Login} />
+                <Stack.Screen name="companies" component={Companies} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 

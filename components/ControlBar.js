@@ -7,37 +7,31 @@ import {
     faClock,
     faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-native";
 
-const ControlBar = () => {
+const ControlBar = ({ current, navigation }) => {
     return (
         <View style={styles.container}>
-            <Pressable>
-                <Link to="/login">
-                    <FontAwesomeIcon
-                        icon={faSignOutAlt}
-                        style={styles.icon}
-                        size={theme.iconSizes.md}
-                    />
-                </Link>
+            <Pressable onPress={() => navigation.navigate("login")}>
+                <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    style={styles.icon}
+                    size={theme.iconSizes.md}
+                />
             </Pressable>
-            <Pressable>
-                <Link to="/">
-                    <FontAwesomeIcon
-                        icon={faClock}
-                        style={styles.icon}
-                        size={theme.iconSizes.md}
-                    />
-                </Link>
+
+            <Pressable onPress={() => navigation.navigate("dashboard")}>
+                <FontAwesomeIcon
+                    icon={faClock}
+                    style={styles.icon}
+                    size={theme.iconSizes.md}
+                />
             </Pressable>
-            <Pressable>
-                <Link to="/settings">
-                    <FontAwesomeIcon
-                        icon={faUserCog}
-                        style={styles.icon}
-                        size={theme.iconSizes.md}
-                    />
-                </Link>
+            <Pressable onPress={() => navigation.navigate("settings")}>
+                <FontAwesomeIcon
+                    icon={faUserCog}
+                    style={styles.icon}
+                    size={theme.iconSizes.md}
+                />
             </Pressable>
         </View>
     );

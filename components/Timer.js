@@ -1,5 +1,5 @@
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import React from "react";
 import { theme } from "./theme";
 import Time from "./Time";
 

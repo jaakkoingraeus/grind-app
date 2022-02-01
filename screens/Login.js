@@ -4,17 +4,20 @@ import { useState } from "react";
 import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/LoginForm";
 import { theme } from "../components/theme";
+import LayOut from "../components/LayOut";
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const [status, setStatus] = useState("signup");
     return (
-        <View style={styles.container}>
-            {status === "login" ? (
-                <LoginForm setStatus={setStatus} />
-            ) : (
-                <SignUpForm setStatus={setStatus} />
-            )}
-        </View>
+        <LayOut navigation={navigation}>
+            <View style={styles.container}>
+                {status === "login" ? (
+                    <LoginForm setStatus={setStatus} />
+                ) : (
+                    <SignUpForm setStatus={setStatus} />
+                )}
+            </View>
+        </LayOut>
     );
 };
 

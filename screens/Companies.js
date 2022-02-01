@@ -2,12 +2,15 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CompaniesList from "../components/CompaniesList";
 import { theme } from "../components/theme";
+import LayOut from "../components/LayOut";
 
-const Companies = () => {
+const Companies = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <CompaniesList />
-        </View>
+        <LayOut navigation={navigation}>
+            <View style={styles.container}>
+                <CompaniesList />
+            </View>
+        </LayOut>
     );
 };
 

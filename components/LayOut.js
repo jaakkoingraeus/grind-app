@@ -3,12 +3,12 @@ import React from "react";
 import TopBar from "./TopBar";
 import ControlBar from "./ControlBar";
 
-const LayOut = ({ children }) => {
+const LayOut = ({ navigation, children }) => {
     return (
         <View style={styles.container}>
             <TopBar />
             {children}
-            <ControlBar />
+            <ControlBar navigation={navigation} />
         </View>
     );
 };
