@@ -9,7 +9,7 @@ const Time = ({ hours, seconds, minutes }) => {
                 {hours > 0 && `${hours}:`}
             </Text>
             <Text style={[styles.time, styles.minutes]}>
-                {minutes > 0 && `${minutes}:`}
+                {(minutes || hours) > 0 && `${minutes}:`}
             </Text>
             <Text style={[styles.time, styles.seconds]}>{seconds}</Text>
         </View>

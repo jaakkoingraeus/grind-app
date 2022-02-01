@@ -4,11 +4,15 @@
 //Count total time and return once stopped
 
 import { useEffect, useState } from "react";
+import desctructSeconds from "../utilities/destructSeconds";
 
 const useTimer = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [running, setRunning] = useState(false);
     const [intervalState, setIntervalState] = useState(null);
+    //const [hours, setHours] = useState(0);
+    //const [minutes, setMinutes] = useState(0);
+    //const [seconds, setSeconds] = useState(0);
 
     const toggleTimer = () => {
         setRunning(!running);
@@ -19,12 +23,16 @@ const useTimer = () => {
         setCurrentTime(0);
     };
 
+    const [hours, minutes, seconds] = desctructSeconds(currentTime);
+
+    useEffect(() => {}, [currentTime]);
+
     useEffect(() => {
         if (running) {
             setIntervalState(
                 setInterval(
                     () => setCurrentTime((currentTime) => currentTime + 1),
-                    1000
+                    100
                 )
             );
         } else if (!running) {
@@ -34,6 +42,9 @@ const useTimer = () => {
 
     return {
         time: currentTime,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds,
         status: running,
         toggle: toggleTimer,
         reset: resetTimer,

@@ -27,7 +27,11 @@ const Timer = ({}) => {
 
     return (
         <View style={styles.container}>
-            <Time hours={0} minutes={0} seconds={timer.time} />
+            <Time
+                hours={timer.hours}
+                minutes={timer.minutes}
+                seconds={timer.seconds}
+            />
             <Pressable
                 style={styles.startButton}
                 onPress={() => timer.toggle()}
