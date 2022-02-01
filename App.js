@@ -46,10 +46,10 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="dashboard" component={DashBoard} />
-                <Stack.Screen name="settings" component={Profile} />
-                <Stack.Screen name="login" component={Login} />
-                <Stack.Screen name="companies" component={Companies} />
+                <Stack.Screen name="Main" component={DashBoard} />
+                <Stack.Screen name="Settings" component={Profile} />
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Companies" component={Companies} />
             </Stack.Navigator>
         </NavigationContainer>
     );

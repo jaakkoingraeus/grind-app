@@ -8,10 +8,10 @@ import {
     faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
 
-const ControlBar = ({ current, navigation }) => {
+const ControlBar = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Pressable onPress={() => navigation.navigate("login")}>
+            <Pressable onPress={() => navigation.navigate("Login")}>
                 <FontAwesomeIcon
                     icon={faSignOutAlt}
                     style={styles.icon}
@@ -19,14 +19,14 @@ const ControlBar = ({ current, navigation }) => {
                 />
             </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("dashboard")}>
+            <Pressable onPress={() => navigation.navigate("Main")}>
                 <FontAwesomeIcon
                     icon={faClock}
                     style={styles.icon}
                     size={theme.iconSizes.md}
                 />
             </Pressable>
-            <Pressable onPress={() => navigation.navigate("settings")}>
+            <Pressable onPress={() => navigation.navigate("Settings")}>
                 <FontAwesomeIcon
                     icon={faUserCog}
                     style={styles.icon}
