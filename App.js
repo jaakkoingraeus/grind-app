@@ -7,17 +7,13 @@ import DashBoard from "./screens/DashBoard";
 import Login from "./screens/Login";
 import Profile from "./screens/Settings";
 import { TimerContext } from "./contexts/timer";
+import useTimer from "./hooks/useTimer";
 
 const Stack = createNativeStackNavigator();
 
-const timerInitialStatus = {
-    running: false,
-    hours: 0,
-    minutes: 31,
-    seconds: 40,
-};
-
 export default function App() {
+    const timer = useTimer();
+
     const cancelTimer = () => {
         Alert.alert(
             "Stop timer",
@@ -36,7 +32,7 @@ export default function App() {
         );
     };
     return (
-        <TimerContext.Provider value={timerInitialStatus}>
+        <TimerContext.Provider value={timer}>
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen name="Main" component={DashBoard} />
