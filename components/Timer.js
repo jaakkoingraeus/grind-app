@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { theme } from "./theme";
 import Time from "./Time";
+import { TimerContext } from "../contexts/timer";
 
 const Timer = ({
     hours,
@@ -11,9 +12,15 @@ const Timer = ({
     setTimerStatus,
     cancelTimer,
 }) => {
+    const timer = useContext(TimerContext);
+
     return (
         <View style={styles.container}>
-            <Time hours={hours} minutes={minutes} seconds={seconds} />
+            <Time
+                hours={timer.hours}
+                minutes={timer.minutes}
+                seconds={timer.seconds}
+            />
             <Pressable
                 style={styles.startButton}
                 onPress={() => setTimerStatus(!timerStatus)}

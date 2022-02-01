@@ -1,30 +1,23 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Alert, StyleSheet } from "react-native";
 import Companies from "./screens/Companies";
 import DashBoard from "./screens/DashBoard";
 import Login from "./screens/Login";
 import Profile from "./screens/Settings";
+import { TimerContext } from "./contexts/timer";
 
 const Stack = createNativeStackNavigator();
 
+const timerInitialStatus = {
+    running: false,
+    hours: 0,
+    minutes: 31,
+    seconds: 40,
+};
+
 export default function App() {
-    const [timer, setTimer] = useState(0);
-    const [timerStatus, setTimerStatus] = useState(false);
-
-    useEffect(() => {
-        let interval = null;
-        if (timerStatus)
-            interval = setInterval(() => setTimer((timer) => timer + 1), 500);
-        else {
-            clearInterval(interval);
-        }
-        return () => {
-            clearInterval(interval);
-        };
-    }, [timerStatus]);
-
     const cancelTimer = () => {
         Alert.alert(
             "Stop timer",
@@ -33,8 +26,7 @@ export default function App() {
                 {
                     text: "Stop",
                     onPress: () => {
-                        setTimerStatus(false);
-                        setTimer(0);
+                        console.log("Stopped");
                     },
                 },
                 {
@@ -44,14 +36,16 @@ export default function App() {
         );
     };
     return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Main" component={DashBoard} />
-                <Stack.Screen name="Settings" component={Profile} />
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Companies" component={Companies} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <TimerContext.Provider value={timerInitialStatus}>
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name="Main" component={DashBoard} />
+                    <Stack.Screen name="Settings" component={Profile} />
+                    <Stack.Screen name="Login" component={Login} />
+                    <Stack.Screen name="Companies" component={Companies} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </TimerContext.Provider>
     );
 }
 
