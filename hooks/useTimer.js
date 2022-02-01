@@ -10,9 +10,11 @@ const useTimer = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [running, setRunning] = useState(false);
     const [intervalState, setIntervalState] = useState(null);
-    //const [hours, setHours] = useState(0);
-    //const [minutes, setMinutes] = useState(0);
-    //const [seconds, setSeconds] = useState(0);
+    const [startTime, setStartTime] = useState(0);
+    const [endTime, setEndTime] = useState(0);
+    const [sessions, setSessions] = useState([]);
+
+    const [hours, minutes, seconds] = desctructSeconds(currentTime);
 
     const toggleTimer = () => {
         setRunning(!running);
@@ -21,24 +23,56 @@ const useTimer = () => {
     const resetTimer = () => {
         setRunning(false);
         setCurrentTime(0);
+        setSessions([]);
+        setStartTime(0);
+        setEndTime(0);
     };
 
-    const [hours, minutes, seconds] = desctructSeconds(currentTime);
+    const totalHours = () => {
+        if (sessions.length === 0) return 0;
 
-    useEffect(() => {}, [currentTime]);
+        const totalTime = sessions
+            .map((session) => session.duration)
+            .reduce((a, b) => a + b, 0);
+
+        const [minutes] = desctructSeconds(totalTime);
+
+        return [minutes];
+    };
 
     useEffect(() => {
         if (running) {
+            setStartTime(new Date().getTime());
             setIntervalState(
                 setInterval(
                     () => setCurrentTime((currentTime) => currentTime + 1),
                     100
                 )
             );
-        } else if (!running) {
+        } else if (!running && currentTime > 0) {
             clearInterval(intervalState);
+            setEndTime(new Date().getTime());
         }
     }, [running]);
+
+    useEffect(() => {
+        if (endTime - startTime === 0) return;
+        setSessions(
+            sessions.concat({
+                id: sessions.length,
+                duration: endTime - startTime,
+                started: startTime,
+                ended: endTime,
+            })
+        );
+        setStartTime(0);
+        setEndTime(0);
+    }, [endTime]);
+
+    //DEBUGGING ONLY
+    useEffect(() => {
+        console.log("Current sessions: ", sessions);
+    }, [sessions]);
 
     return {
         time: currentTime,
@@ -46,6 +80,7 @@ const useTimer = () => {
         minutes: minutes,
         seconds: seconds,
         status: running,
+        totalTime: totalHours,
         toggle: toggleTimer,
         reset: resetTimer,
     };

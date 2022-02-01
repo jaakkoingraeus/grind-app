@@ -1,15 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { theme } from "./theme";
+import { TimerContext } from "../contexts/timer";
 
 const UserStats = () => {
+    const timer = useContext(TimerContext);
+
     return (
         <View style={styles.container}>
             <Text style={styles.name}>Jaakko Ingraeus</Text>
             <Text style={styles.company}>Reaktor</Text>
             <View style={styles.statBox}>
                 <Text style={styles.hoursText}>Total hours: </Text>
-                <Text style={styles.hours}>14.3</Text>
+                <Text style={styles.hours}>{timer.totalTime()}</Text>
             </View>
         </View>
     );
