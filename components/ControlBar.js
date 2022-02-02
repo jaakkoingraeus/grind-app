@@ -7,8 +7,12 @@ import {
     faClock,
     faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react/cjs/react.development";
+import { UserContext } from "../contexts/user";
 
 const ControlBar = ({ navigation }) => {
+    const userContext = useContext(UserContext);
+
     return (
         <View style={styles.container}>
             <Pressable onPress={() => navigation.navigate("Login")}>
@@ -18,7 +22,7 @@ const ControlBar = ({ navigation }) => {
                     size={theme.iconSizes.md}
                 />
             </Pressable>
-
+            {userContext.user && <Text>{userContext.user.email}</Text>}
             <Pressable onPress={() => navigation.navigate("Main")}>
                 <FontAwesomeIcon
                     icon={faClock}
