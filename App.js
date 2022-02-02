@@ -26,19 +26,26 @@ export default function App() {
                                 <Stack.Screen
                                     name="Main"
                                     component={DashBoard}
+                                    options={{ headerShown: false }}
                                 />
                                 <Stack.Screen
                                     name="Settings"
                                     component={Profile}
+                                    options={{ headerShown: false }}
                                 />
 
                                 <Stack.Screen
                                     name="Companies"
                                     component={Companies}
+                                    options={{ headerShown: false }}
                                 />
                             </>
                         ) : (
-                            <Stack.Screen name="Login" component={Login} />
+                            <Stack.Screen
+                                name="Login"
+                                component={Login}
+                                options={{ headerShown: false }}
+                            />
                         )}
                     </Stack.Navigator>
                 </NavigationContainer>

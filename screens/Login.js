@@ -26,7 +26,7 @@ const Login = ({ navigation }) => {
                 userContext.setUser(userCredential.user);
                 setEmail("");
                 setPassword("");
-                console.log("Logged in as: ", userContext.user.email);
+                console.log("Logged in.");
             })
             .catch((error) => {
                 console.log(error);

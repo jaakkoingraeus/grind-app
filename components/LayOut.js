@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import TopBar from "./TopBar";
 import ControlBar from "./ControlBar";
+import Constants from "expo-constants";
 
 const LayOut = ({ navigation, hideNavigation, children }) => {
     return (
@@ -20,5 +21,6 @@ const styles = StyleSheet.create({
         flex: 1,
         display: "flex",
         justifyContent: "space-between",
+        marginTop: Constants.statusBarHeight,
     },
 });
