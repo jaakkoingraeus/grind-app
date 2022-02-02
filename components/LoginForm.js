@@ -2,29 +2,15 @@ import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
 import React, { useState } from "react";
 import { theme } from "./theme";
 import SubmitButton from "./SubmitButton";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useContext } from "react/cjs/react.development";
-import { UserContext } from "../contexts/user";
 
-const LoginForm = ({ setStatus }) => {
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-
-    const user = useContext(UserContext);
-
-    const logIn = () => {
-        const auth = getAuth();
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                user.setUser(userCredential.user);
-                setEmail("");
-                setPassword("");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+const LoginForm = ({
+    setStatus,
+    login,
+    password,
+    setPassword,
+    email,
+    setEmail,
+}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Log in</Text>
@@ -54,7 +40,9 @@ const LoginForm = ({ setStatus }) => {
                         </View>
                     </View>
                 </View>
-                <SubmitButton onPress={logIn}>Log in</SubmitButton>
+                <SubmitButton onPress={() => login(email, password)}>
+                    Log in
+                </SubmitButton>
                 <Pressable
                     style={styles.changeStatus}
                     onPress={() => setStatus("signup")}

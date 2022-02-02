@@ -2,30 +2,18 @@ import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
 import React, { useState } from "react";
 import { theme } from "./theme";
 import SubmitButton from "./SubmitButton";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app as firebaseApp } from "../firebase";
 
-const SignUpForm = ({ setStatus }) => {
+const SignUpForm = ({
+    setStatus,
+    password,
+    setPassword,
+    email,
+    setEmail,
+    signUp,
+}) => {
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [user, setUser] = useState(null);
 
-    const auth = getAuth(firebaseApp);
-
-    const signUp = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredentials) => {
-                //Signed in
-                setUser(userCredentials.user);
-                setPassword("");
-                setEmail("");
-                console.log("Signed up");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Sign up</Text>

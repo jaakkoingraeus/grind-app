@@ -16,8 +16,6 @@ export default function App() {
     const [user, setUser] = useState(null);
     const timer = useTimer();
 
-    console.log(user);
-
     return (
         <UserContext.Provider value={{ user: user, setUser: setUser }}>
             <TimerContext.Provider value={timer}>
