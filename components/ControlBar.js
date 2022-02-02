@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useContext } from "react";
 import { theme } from "./theme";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -7,11 +7,26 @@ import {
     faClock,
     faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
+import { UserContext } from "../contexts/user";
 
 const ControlBar = ({ navigation }) => {
+    const userContext = useContext(UserContext);
+
+    const logOut = () => {
+        Alert.alert("Log out", "Are you sure you want to log out?", [
+            {
+                text: "Log out",
+                onPress: () => userContext.setUser(null),
+                style: "cancel",
+            },
+            {
+                text: "Cancel",
+            },
+        ]);
+    };
     return (
         <View style={styles.container}>
-            <Pressable onPress={() => navigation.navigate("Login")}>
+            <Pressable onPress={() => logOut()}>
                 <FontAwesomeIcon
                     icon={faSignOutAlt}
                     style={styles.icon}

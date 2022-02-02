@@ -48,7 +48,7 @@ const Login = ({ navigation }) => {
     };
 
     return (
-        <LayOut navigation={navigation}>
+        <LayOut navigation={navigation} hideNavigation={true}>
             <View style={styles.container}>
                 {status === "login" ? (
                     <LoginForm

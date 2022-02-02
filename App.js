@@ -21,10 +21,25 @@ export default function App() {
             <TimerContext.Provider value={timer}>
                 <NavigationContainer>
                     <Stack.Navigator>
-                        <Stack.Screen name="Main" component={DashBoard} />
-                        <Stack.Screen name="Settings" component={Profile} />
-                        <Stack.Screen name="Login" component={Login} />
-                        <Stack.Screen name="Companies" component={Companies} />
+                        {user ? (
+                            <>
+                                <Stack.Screen
+                                    name="Main"
+                                    component={DashBoard}
+                                />
+                                <Stack.Screen
+                                    name="Settings"
+                                    component={Profile}
+                                />
+
+                                <Stack.Screen
+                                    name="Companies"
+                                    component={Companies}
+                                />
+                            </>
+                        ) : (
+                            <Stack.Screen name="Login" component={Login} />
+                        )}
                     </Stack.Navigator>
                 </NavigationContainer>
             </TimerContext.Provider>
