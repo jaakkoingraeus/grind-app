@@ -1,9 +1,9 @@
-# grind-app
-Mobile app for tracking work hours.
+# GRIND APP
+### Mobile app for tracking work hours.
 
 This is a hobby project that I will work on when I have the time to do so.
 
-####User stories
+### User stories
 1. User can create an account with email and password.
 2. User can log in.
 3. User can start / stop the work timer.
