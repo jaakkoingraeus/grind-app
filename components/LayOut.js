@@ -4,12 +4,14 @@ import TopBar from "./TopBar";
 import ControlBar from "./ControlBar";
 import Constants from "expo-constants";
 
-const LayOut = ({ navigation, hideNavigation, children }) => {
+const LayOut = ({ navigation, route, hideNavigation, children }) => {
     return (
         <View style={styles.container}>
             <TopBar />
             {children}
-            {!hideNavigation && <ControlBar navigation={navigation} />}
+            {!hideNavigation && (
+                <ControlBar route={route} navigation={navigation} />
+            )}
         </View>
     );
 };

@@ -4,9 +4,9 @@ import { theme } from "../components/theme";
 import StatView from "../components/StatView";
 import LayOut from "../components/LayOut";
 
-const Settings = ({ navigation }) => {
+const Settings = ({ navigation, route }) => {
     return (
-        <LayOut navigation={navigation}>
+        <LayOut navigation={navigation} route={route}>
             <View style={styles.container}>
                 <Text style={styles.title}>Settings</Text>
                 <View style={styles.settings}>

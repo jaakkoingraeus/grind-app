@@ -4,9 +4,9 @@ import UserStats from "../components/UserStats";
 import Timer from "../components/Timer";
 import LayOut from "../components/LayOut";
 
-const DashBoard = ({ navigation }) => {
+const DashBoard = ({ navigation, route }) => {
     return (
-        <LayOut navigation={navigation}>
+        <LayOut navigation={navigation} route={route}>
             <View style={styles.container}>
                 <UserStats />
                 <Timer hours={2} minutes={45} seconds={6} timerStatus={false} />

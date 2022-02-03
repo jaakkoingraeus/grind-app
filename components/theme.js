@@ -9,10 +9,12 @@ export const theme = {
         accent: "#2563eb",
         textPrimary: "#1f2937",
         textSecondary: "#4b5563",
-        textLight: "#d1d5db",
+        textLight: "#C0C5CB",
         light: "#f9fafb",
+        white: "#FFF",
     },
     fontSizes: {
+        iconSm: 10,
         md: 16,
         lg: 24,
         xl: 36,
@@ -45,7 +47,8 @@ export const theme = {
         bottomBarHeight: 52,
     },
     iconSizes: {
-        md: 24,
-        lg: 36,
+        sm: 18,
+        md: 25,
+        lg: 31,
     },
 };

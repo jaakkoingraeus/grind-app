@@ -21,7 +21,7 @@ export default function App() {
             <TimerContext.Provider value={timer}>
                 <NavigationContainer>
                     <Stack.Navigator>
-                        {user ? (
+                        {true ? (
                             <>
                                 <Stack.Screen
                                     name="Main"
