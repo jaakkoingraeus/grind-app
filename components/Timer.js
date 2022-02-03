@@ -37,17 +37,17 @@ const Timer = ({}) => {
                 onPress={() => timer.toggle()}
             >
                 <Text style={styles.grindText}>
-                    {timer.status ? "PAUSE" : "GRIND"}
+                    {timer.status ? "PUSSY OUT" : "GRIND"}
                 </Text>
             </Pressable>
             <Pressable style={styles.addHours}>
                 <Text
                     style={styles.addHours}
                     onPress={() => {
-                        cancelTimer();
+                        timer.getSessions();
                     }}
                 >
-                    Cancel timer
+                    Get sessions
                 </Text>
             </Pressable>
         </View>

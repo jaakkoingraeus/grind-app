@@ -6,13 +6,14 @@
 import { useEffect, useState } from "react";
 import desctructSeconds from "../utilities/destructSeconds";
 
+let sessions = [];
+
 const useTimer = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [running, setRunning] = useState(false);
     const [intervalState, setIntervalState] = useState(null);
     const [startTime, setStartTime] = useState(0);
     const [endTime, setEndTime] = useState(0);
-    const [sessions, setSessions] = useState([]);
 
     const [hours, minutes, seconds] = desctructSeconds(currentTime);
 
@@ -20,59 +21,47 @@ const useTimer = () => {
         setRunning(!running);
     };
 
-    const resetTimer = () => {
-        setRunning(false);
-        setCurrentTime(0);
-        setSessions([]);
-        setStartTime(0);
-        setEndTime(0);
+    const getSessions = () => {
+        console.log(sessions);
     };
 
-    const totalHours = () => {
+    const getSessionsHours = () => {
         if (sessions.length === 0) return 0;
 
         const totalTime = sessions
             .map((session) => session.duration)
             .reduce((a, b) => a + b, 0);
 
-        const [minutes] = desctructSeconds(totalTime);
+        const [hours, minutes, seconds] = desctructSeconds(totalTime);
 
-        return [minutes];
+        //CHANGE TO HOURS LATER
+
+        return minutes.toString().slice(0, 1);
     };
 
     useEffect(() => {
-        if (running) {
-            setStartTime(new Date().getTime());
+        if (running && currentTime === 0) {
             setIntervalState(
-                setInterval(
-                    () => setCurrentTime((currentTime) => currentTime + 1),
-                    100
-                )
+                setInterval(() => setCurrentTime((time) => time + 1), 1000)
             );
-        } else if (!running && currentTime > 0) {
+            setStartTime(new Date().getTime());
+        } else {
             clearInterval(intervalState);
+            setCurrentTime(0);
             setEndTime(new Date().getTime());
         }
     }, [running]);
 
     useEffect(() => {
-        if (endTime - startTime === 0) return;
-        setSessions(
-            sessions.concat({
-                id: sessions.length,
-                duration: endTime - startTime,
-                started: startTime,
-                ended: endTime,
-            })
-        );
+        if (startTime === 0) return;
         setStartTime(0);
         setEndTime(0);
+        sessions.push({
+            startTime: startTime,
+            endTime: endTime,
+            duration: endTime / 1000 - startTime / 1000,
+        });
     }, [endTime]);
-
-    //DEBUGGING ONLY
-    useEffect(() => {
-        console.log("Current sessions: ", sessions);
-    }, [sessions]);
 
     return {
         time: currentTime,
@@ -80,9 +69,9 @@ const useTimer = () => {
         minutes: minutes,
         seconds: seconds,
         status: running,
-        totalTime: totalHours,
+        sessionsHours: getSessionsHours,
         toggle: toggleTimer,
-        reset: resetTimer,
+        getSessions: getSessions,
     };
 };
 
