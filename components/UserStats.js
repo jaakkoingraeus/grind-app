@@ -11,7 +11,7 @@ const UserStats = () => {
             <Text style={styles.name}>Jaakko Ingraeus</Text>
             <Text style={styles.company}>Reaktor</Text>
             <View style={styles.statBox}>
-                <Text style={styles.hoursText}>Total hours: </Text>
+                <Text style={styles.hoursText}>Total minutes: </Text>
                 <Text style={styles.hours}>{timer.sessionsHours()}</Text>
             </View>
         </View>

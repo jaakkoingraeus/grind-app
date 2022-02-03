@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { theme } from "./theme";
 import SubmitButton from "./SubmitButton";
 
